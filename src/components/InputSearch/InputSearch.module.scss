@@ -1,0 +1,22 @@
+.search {
+  position: relative;
+  width: 20em;
+  padding: 0 0 0 2em;
+
+  border-radius: 0.3em;
+  background-color: var(--white-color);
+  color: var(--zinc-900);
+
+  &__input {
+    width: 100%;
+    padding: 0.5em;
+    outline: none;
+  }
+  &__icon {
+    top: 0.7em;
+    left: 0.5em;
+    width: 1em;
+    position: absolute;
+    color: var(--zinc-900);
+  }
+}
