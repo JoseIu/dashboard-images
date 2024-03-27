@@ -1,0 +1,16 @@
+.nav {
+  &__ul {
+    display: flex;
+    align-items: center;
+    gap: 1.5em;
+  }
+  &__li {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--zinc-400);
+  }
+}
+
+.active {
+  color: #af7c4c;
+}
