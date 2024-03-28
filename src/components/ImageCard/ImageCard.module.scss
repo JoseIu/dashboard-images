@@ -1,0 +1,66 @@
+.card {
+  position: relative;
+  display: inline-block;
+  padding: 0.3em;
+  // background-color: red;
+  margin-bottom: 10px;
+  border-radius: 0.3em;
+
+  &__img {
+    border-radius: 0.3em;
+    transition: all 0.3s ease;
+  }
+
+  &__right,
+  &__bottom,
+  &__left {
+    position: absolute;
+    padding: 0.5em;
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    background-color: var(--zinc-100);
+    cursor: pointer;
+
+    opacity: 0;
+    pointer-events: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+  &__right {
+    top: 1em;
+    right: 1em;
+  }
+  &__left {
+    bottom: 1em;
+    right: 1em;
+  }
+  &__bottom {
+    bottom: 1em;
+    left: 1em;
+  }
+  &__icon {
+    width: 1.5em;
+    color: var(--zinc-900);
+  }
+  &:hover {
+    .card__img {
+      opacity: 0.4;
+    }
+
+    .card__right,
+    .card__bottom,
+    .card__left {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+}
