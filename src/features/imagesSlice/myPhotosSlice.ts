@@ -1,15 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { MyPhoyos } from '../../interfaces/myPhotos.interface';
-const initialState: MyPhoyos[] = [];
+import { MyPhoTos } from '../../interfaces/myPhotos.interface';
+const initialState: MyPhoTos[] = [];
 
 const myPhotosSlice = createSlice({
   name: 'myPhotos',
   initialState,
   reducers: {
-    deleteImage: (state, action) => {},
+    addImage: (state, action) => {
+      return [...state, action.payload];
+    },
+    deleteImage: (state, action) => {
+      return state.filter((image) => image.id !== action.payload);
+    },
   },
 });
 
-export const { deleteImage } = myPhotosSlice.actions;
+export const { deleteImage, addImage } = myPhotosSlice.actions;
 
 export default myPhotosSlice.reducer;
