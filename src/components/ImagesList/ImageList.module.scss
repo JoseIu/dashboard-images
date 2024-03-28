@@ -1,0 +1,41 @@
+.images {
+  width: 100%;
+  //   padding: 1em;
+  background-color: rebeccapurple;
+
+  columns: 4 12.5rem;
+  //   column-gap: 5px;
+}
+
+.card {
+  position: relative;
+  display: inline-block;
+  padding: 0.3em;
+  background-color: red;
+  margin-bottom: 10px;
+  border-radius: 0.3em;
+
+  &__img {
+    border-radius: 0.3em;
+  }
+
+  &__right,
+  &__bottom,
+  &__left {
+    position: absolute;
+    width: 2em;
+    background-color: blue;
+  }
+  &__right {
+    top: 0.5em;
+    right: 0.5em;
+  }
+  &__left {
+    bottom: 0.5em;
+    right: 0.5em;
+  }
+  &__bottom {
+    bottom: 0.5em;
+    left: 0.5em;
+  }
+}
