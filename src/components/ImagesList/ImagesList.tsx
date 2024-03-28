@@ -1,23 +1,29 @@
-import { useSelector } from 'react-redux';
-import { RooState } from '../../app/store';
-
+import { Photos } from '../../interfaces/Result.interface';
+import { MyPhoTos } from '../../interfaces/myPhotos.interface';
+import ImageCard from '../ImageCard/ImageCard';
 import style from './ImageList.module.scss';
 
-const ImagesList = () => {
-  const imagesList = useSelector((state: RooState) => state.images);
+interface ImagesListProps {
+  images: Photos[];
+}
 
-  console.log(imagesList);
+const ImagesList = ({ images }: ImagesListProps) => {
+  const mapImageToMyPhotos = (image: Photos): MyPhoTos => {
+    return {
+      id: image.id,
+      image: image.urls.small,
+      width: image.width,
+      height: image.height,
+      likes: image.likes,
+      alt_description: image.alt_description,
+      created_at: image.created_at,
+      description: image.description,
+    };
+  };
   return (
     <div className={style.images}>
-      {imagesList.map((image) => (
-        <article key={image.id} className={style.card}>
-          <img className={style.card__img} src={image.urls.small} alt={image.alt_description} />
-          <button className={style.card__right}>ADD</button>
-          <button className={style.card__bottom}>DOW</button>
-          <button className={style.card__left}>EDIT</button>
-
-          <div></div>
-        </article>
+      {images.map((image) => (
+        <ImageCard key={image.id} image={mapImageToMyPhotos(image)} />
       ))}
     </div>
   );
