@@ -3,10 +3,10 @@
 export interface Result {
   total: number;
   total_pages: number;
-  results: ResultElement[];
+  results: Photos[];
 }
 
-export interface ResultElement {
+export interface Photos {
   id: string;
   slug: string;
   alternative_slugs: AlternativeSlugs;
@@ -84,7 +84,7 @@ export interface Source {
 
 export interface Ancestry {
   type: Category;
-  category: Category;
+  category?: Category;
   subcategory?: Category;
 }
 
@@ -99,12 +99,12 @@ export interface CoverPhoto {
   alternative_slugs: AlternativeSlugs;
   created_at: string;
   updated_at: string;
-  promoted_at: string;
+  promoted_at: null | string;
   width: number;
   height: number;
   color: string;
   blur_hash: string;
-  description: null | string;
+  description: string;
   alt_description: string;
   breadcrumbs: Breadcrumb[];
   urls: Urls;
@@ -115,25 +115,20 @@ export interface CoverPhoto {
   sponsorship: null;
   topic_submissions: CoverPhotoTopicSubmissions;
   asset_type: AssetType;
-  premium: boolean;
-  plus: boolean;
+  premium?: boolean;
+  plus?: boolean;
   user: User;
 }
 
 export interface CoverPhotoTopicSubmissions {
-  health?: ColorOfWater;
-  'textures-patterns'?: ColorOfWater;
-  wallpapers?: ColorOfWater;
-  'architecture-interior'?: ColorOfWater;
+  wallpapers?: Nature;
+  nature?: Nature;
+  'textures-patterns'?: Nature;
 }
 
-export interface ColorOfWater {
-  status: Status;
+export interface Nature {
+  status: string;
   approved_on: string;
-}
-
-export enum Status {
-  Approved = 'approved',
 }
 
 export interface Urls {
@@ -192,8 +187,9 @@ export interface Social {
 }
 
 export interface ResultTopicSubmissions {
-  'food-drink'?: ColorOfWater;
-  health?: ColorOfWater;
-  'color-of-water'?: ColorOfWater;
-  'textures-patterns'?: ColorOfWater;
+  wallpapers?: Wallpapers;
+}
+
+export interface Wallpapers {
+  status: string;
 }
