@@ -1,13 +1,15 @@
 import { FormEvent, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { RooState } from '../app/store';
 import ImagesList from '../components/ImagesList/ImagesList';
 import InputSearch from '../components/InputSearch/InputSearch';
 import style from './SearchPage.module.scss';
 
 const SearchPage = () => {
   const [search, setSearch] = useState('');
-
   const dispatch = useDispatch();
+
+  const imagesList = useSelector((state: RooState) => state.images);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,10 +35,9 @@ const SearchPage = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        {/* <input type="submit" value="search" /> */}
       </form>
 
-      <ImagesList />
+      <ImagesList images={imagesList} />
     </section>
   );
 };
