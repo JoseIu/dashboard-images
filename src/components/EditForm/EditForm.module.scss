@@ -1,0 +1,46 @@
+.edit {
+  position: relative;
+  min-width: 30em;
+  padding: 2em;
+  border-radius: 0.3em;
+  background-color: var(--zinc-900);
+  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.418);
+  outline: 1px solid red;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+
+  &__input {
+    width: 100%;
+    padding: 0.5em;
+    border-radius: 0.3em;
+    background-color: var(--white-color);
+    color: var(--zinc-900);
+  }
+  &__submit {
+    padding: 0.3em 1em;
+    border-radius: 0.3em;
+    background-color: var(--secondary-color);
+  }
+  &__close {
+    position: absolute;
+    top: -1em;
+    right: 0.5em;
+    width: 1em;
+    height: 1em;
+    padding: 1em;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
