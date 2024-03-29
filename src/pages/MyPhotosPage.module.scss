@@ -1,0 +1,17 @@
+.saved {
+  padding: 1em;
+}
+.select {
+  background-color: var(--secondary-color);
+  color: var(--zinc-100);
+  border-radius: 0.3em;
+  padding: 1em;
+  outline: none;
+}
+
+.filters {
+  background-color: rebeccapurple;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
