@@ -1,8 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { RooState } from '../../app/store';
-import { addImage, deleteImage } from '../../features/imagesSlice/myPhotosSlice';
+import { addImage, deleteImage, selectImageById } from '../../features/imagesSlice/myPhotosSlice';
+import existImageInPhotos from '../../helpers/existImageInPhotos';
+import removeFromStorage from '../../helpers/removeFromStorage';
+import saveToStorage from '../../helpers/saveToStorage';
 import { MyPhoTos } from '../../interfaces/myPhotos.interface';
 import ArrowIcon from '../icons/ArrowIcon';
+import EditIcon from '../icons/EditIcon';
 import HeartFill from '../icons/HeartFill';
 import HeartIcon from '../icons/HeartIcon';
 import style from './ImageCard.module.scss';
@@ -13,7 +17,7 @@ interface ImageCardProps {
 
 const ImageCard = ({ image, isMyPhotosPage = false }: ImageCardProps) => {
   const images = useSelector((state: RooState) => state.images);
-  const imagesSaved = useSelector((state: RooState) => state.myPhoto);
+  const imagesSaved = useSelector((state: RooState) => state.myPhoto.myPhotos);
 
   const dispatch = useDispatch();
 
@@ -23,15 +27,22 @@ const ImageCard = ({ image, isMyPhotosPage = false }: ImageCardProps) => {
     if (findImage === undefined) return;
 
     //CHECK IF IMAGE IS ALREADY IN MY PHOTOS
-    const existImage = isImageInPhotos(findImage.id, imagesSaved);
+    const existImage = existImageInPhotos(findImage.id, imagesSaved);
 
     if (existImage) return;
     dispatch(addImage(image));
+    saveToStorage(image);
   };
 
   //DELETE FORM MY PHOTOS
   const handleDeleteImage = (id: string) => {
     dispatch(deleteImage(id));
+    removeFromStorage(id);
+  };
+
+  //EDIT IMAGE
+  const handleEdit = (id: string) => {
+    dispatch(selectImageById(id));
   };
 
   return (
@@ -64,13 +75,12 @@ const ImageCard = ({ image, isMyPhotosPage = false }: ImageCardProps) => {
         <ArrowIcon className={style.card__icon} />
       </button>
 
-      {isMyPhotosPage ? <button className={style.card__left}>EDIT</button> : null}
+      {isMyPhotosPage && (
+        <button aria-label="edit" className={style.card__left} onClick={() => handleEdit(image.id)}>
+          <EditIcon className={style.card__icon} />
+        </button>
+      )}
     </article>
   );
 };
-
-const isImageInPhotos = (id: string, imagesSaved: MyPhoTos[]): boolean => {
-  return imagesSaved.some((image) => image.id === id);
-};
-
 export default ImageCard;
