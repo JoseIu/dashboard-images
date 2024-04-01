@@ -9,7 +9,7 @@ const SearchPage = () => {
   const [search, setSearch] = useState('');
   const dispatch = useDispatch();
 
-  const imagesList = useSelector((state: RooState) => state.images);
+  const { images } = useSelector((state: RooState) => state.images);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,7 +37,7 @@ const SearchPage = () => {
         />
       </form>
 
-      <ImagesList images={imagesList} />
+      <ImagesList images={images} />
     </section>
   );
 };
