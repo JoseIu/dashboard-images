@@ -2,11 +2,13 @@ import { InputHTMLAttributes } from 'react';
 import SearchIcon from '../icons/SearchIcon';
 import style from './InputSearch.module.scss';
 
-interface InputSearch extends InputHTMLAttributes<HTMLInputElement> {}
+interface InputSearchProps extends InputHTMLAttributes<HTMLInputElement> {
+  className?: string;
+}
 
-const InputSearch = (props: InputSearch) => {
+const InputSearch = ({ className, ...props }: InputSearchProps) => {
   return (
-    <div className={style.search}>
+    <div className={`${style.search} ${className || ''}`}>
       <input className={style.search__input} {...props} type="text" />
       <SearchIcon className={style.search__icon} />
     </div>
