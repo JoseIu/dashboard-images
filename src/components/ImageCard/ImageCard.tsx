@@ -16,7 +16,7 @@ interface ImageCardProps {
 }
 
 const ImageCard = ({ image, isMyPhotosPage = false }: ImageCardProps) => {
-  const images = useSelector((state: RooState) => state.images);
+  const { images } = useSelector((state: RooState) => state.images);
   const imagesSaved = useSelector((state: RooState) => state.myPhoto.myPhotos);
 
   const dispatch = useDispatch();

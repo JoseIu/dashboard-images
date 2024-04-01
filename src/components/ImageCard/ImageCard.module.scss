@@ -1,10 +1,11 @@
 .card {
   position: relative;
   display: inline-block;
-  padding: 0.3em;
+  // padding: 0.3em;
   // background-color: red;
   margin-bottom: 10px;
   border-radius: 0.3em;
+  overflow: hidden;
 
   &__img {
     border-radius: 0.3em;
@@ -54,6 +55,7 @@
   &:hover {
     .card__img {
       opacity: 0.4;
+      transform: scale(1.1);
     }
 
     .card__right,
