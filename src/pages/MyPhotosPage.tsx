@@ -11,10 +11,10 @@ const MyPhotosPage = () => {
   const [isEditing, setIsEditing] = useState(false);
   const dispatch = useDispatch();
 
-  const imagesSaved = useSelector((state: RooState) => state.myPhoto.myPhotos);
-  const imageToEditId = useSelector((state: RooState) => state.myPhoto.selectedImage);
+  const { myPhotos } = useSelector((state: RooState) => state.myPhoto);
+  const { selectedImage } = useSelector((state: RooState) => state.myPhoto);
 
-  console.log({ imagesSaved });
+  console.log({ imagesSaved: myPhotos });
 
   useEffect(() => {
     const imagesFromStorage = JSON.parse(localStorage.getItem('savedImages') || '[]');
@@ -25,37 +25,40 @@ const MyPhotosPage = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (!imageToEditId || imageToEditId === null) return;
+    if (!selectedImage || selectedImage === null) return;
 
     setIsEditing(true);
-  }, [imageToEditId]);
+  }, [selectedImage]);
 
   return (
     <section className={`${style.saved} wrapper`}>
-      <h2>MyPhotosPage</h2>
+      <h2 className={style.saved__title}>MyPhotosPage</h2>
       {isEditing ? (
-        <EditForm id={imageToEditId} setIsEditing={setIsEditing} />
+        <EditForm id={selectedImage} setIsEditing={setIsEditing} />
       ) : (
         <div className={style.filters}>
-          <InputSearch placeholder="Search an image..." />
+          <InputSearch className={style.filters__search} placeholder="Search an image..." />
 
-          <select name="select" id="selet" className={style.select}>
-            <option value="0">Default</option>
-            <option value="0">Default</option>
-            <option value="0">Default</option>
-            <option value="0">Default</option>
-            <option value="0">Default</option>
+          <select className={style.filters__select} name="select" id="selet">
+            <option className={style.filters__option} value="0">
+              Default
+            </option>
+            <option className={style.filters__option} value="1">
+              Import date
+            </option>
+            <option className={style.filters__option} value="2">
+              Width
+            </option>
+            <option className={style.filters__option} value="3">
+              Height
+            </option>
+            <option className={style.filters__option} value="4">
+              Likes
+            </option>
           </select>
-
-          <ul>
-            <li>a</li>
-            <li>a</li>
-            <li>a</li>
-            <li>a</li>
-          </ul>
         </div>
       )}
-      <ImagesSavedList images={imagesSaved} isMyPhotosPage={true} />
+      <ImagesSavedList images={myPhotos} isMyPhotosPage={true} />
     </section>
   );
 };
