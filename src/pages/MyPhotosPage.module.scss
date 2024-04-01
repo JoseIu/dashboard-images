@@ -1,17 +1,36 @@
 .saved {
   padding: 1em;
-}
-.select {
-  background-color: var(--secondary-color);
-  color: var(--zinc-100);
-  border-radius: 0.3em;
-  padding: 1em;
-  outline: none;
+
+  &__title {
+    font-size: 2.5rem;
+    text-align: center;
+    font-weight: 600;
+  }
 }
 
 .filters {
-  background-color: rebeccapurple;
-  display: flex;
-  flex-direction: column;
+  padding: 2em;
+  background-color: red;
+  display: grid;
+  grid-template-areas:
+    'a a a'
+    'b b b'
+    'c c c';
   gap: 1em;
+
+  @media screen and (min-width: 768px) {
+    grid-template-areas: 'a a  b';
+  }
+  &__search {
+    grid-area: a;
+  }
+
+  &__select {
+    grid-area: b;
+    padding: 1em;
+    border-radius: 0.3em;
+    outline: none;
+    background-color: var(--secondary-color);
+    color: var(--zinc-100);
+  }
 }
