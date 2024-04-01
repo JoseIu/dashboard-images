@@ -11,7 +11,7 @@ interface EditFormProps {
 
 const EditForm = ({ id, setIsEditing }: EditFormProps) => {
   const [edit, setEdit] = useState('');
-  const imagesSaved = useSelector((state: RooState) => state.myPhoto.myPhotos);
+  const { myPhotos } = useSelector((state: RooState) => state.myPhoto);
 
   const dispatch = useDispatch();
   const handleSyubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -26,11 +26,11 @@ const EditForm = ({ id, setIsEditing }: EditFormProps) => {
   };
 
   useEffect(() => {
-    const imageDesctiption = imagesSaved.find((image) => image.id === id);
+    const imageDesctiption = myPhotos.find((image) => image.id === id);
 
     if (!imageDesctiption?.description) return;
     setEdit(imageDesctiption.description);
-  }, [id, imagesSaved]);
+  }, [id, myPhotos]);
   return (
     <form className={style.edit} onSubmit={handleSyubmit}>
       <input
