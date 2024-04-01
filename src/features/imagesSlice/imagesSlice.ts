@@ -2,9 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import { results } from '../../db/data.json';
 import { Photos } from '../../interfaces/Result.interface';
 
-const initialState: Photos[] = results as Photos[];
+const initialState = {
+  images: results as Photos[],
+  pa: 0,
+  isLoading: false,
+};
 
-const imagesSlice = createSlice({
+export const imagesSlice = createSlice({
   name: 'images',
   initialState,
   reducers: {
@@ -16,4 +20,4 @@ const imagesSlice = createSlice({
   },
 });
 export const { addResult } = imagesSlice.actions;
-export default imagesSlice.reducer;
+// export default imagesSlice.reducer;
