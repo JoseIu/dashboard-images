@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RooState } from '../../app/store';
 import { editImage, selectImageById } from '../../features/imagesSlice/myPhotosSlice';
+import editFromStorage from '../../helpers/editFromStorage';
 import style from './EditForm.module.scss';
 
 interface EditFormProps {
@@ -14,10 +15,12 @@ const EditForm = ({ id, setIsEditing }: EditFormProps) => {
   const { myPhotos } = useSelector((state: RooState) => state.myPhoto);
 
   const dispatch = useDispatch();
+
   const handleSyubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     dispatch(editImage({ id, edit }));
+    editFromStorage(id, edit);
   };
 
   const handleCloseEdit = () => {
