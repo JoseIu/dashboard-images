@@ -1,14 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { RooState } from '../../app/store';
-import { addImage, deleteImage, selectImageById } from '../../features/imagesSlice/myPhotosSlice';
-import existImageInPhotos from '../../helpers/existImageInPhotos';
-import removeFromStorage from '../../helpers/removeFromStorage';
-import saveToStorage from '../../helpers/saveToStorage';
+import { useDispatch } from 'react-redux';
+import { selectImageById } from '../../features/imagesSlice/myPhotosSlice';
 import { MyPhoTos } from '../../interfaces/myPhotos.interface';
+import AddDeleteButton from '../AddDeleteButton/AddDeleteButton';
+import ImafeCardDescription from '../ImageCardDescription/ImafeCardDescription';
 import ArrowIcon from '../icons/ArrowIcon';
 import EditIcon from '../icons/EditIcon';
-import HeartFill from '../icons/HeartFill';
-import HeartIcon from '../icons/HeartIcon';
 import style from './ImageCard.module.scss';
 interface ImageCardProps {
   image: MyPhoTos;
@@ -16,29 +12,7 @@ interface ImageCardProps {
 }
 
 const ImageCard = ({ image, isMyPhotosPage = false }: ImageCardProps) => {
-  const { images } = useSelector((state: RooState) => state.images);
-  const imagesSaved = useSelector((state: RooState) => state.myPhoto.myPhotos);
-
   const dispatch = useDispatch();
-
-  // ADD IMAGE TO MY PHOTOS
-  const handleAddImage = (id: string) => {
-    const findImage = images.find((image) => image.id === id);
-    if (findImage === undefined) return;
-
-    //CHECK IF IMAGE IS ALREADY IN MY PHOTOS
-    const existImage = existImageInPhotos(findImage.id, imagesSaved);
-
-    if (existImage) return;
-    dispatch(addImage(image));
-    saveToStorage(image);
-  };
-
-  //DELETE FORM MY PHOTOS
-  const handleDeleteImage = (id: string) => {
-    dispatch(deleteImage(id));
-    removeFromStorage(id);
-  };
 
   //EDIT IMAGE
   const handleEdit = (id: string) => {
@@ -47,39 +21,28 @@ const ImageCard = ({ image, isMyPhotosPage = false }: ImageCardProps) => {
 
   return (
     <article className={style.card}>
-      <img className={style.card__img} src={image.image} alt={image.alt_description} />
+      <div className={style.card__top}>
+        <img className={style.card__img} src={image.image} alt={image.alt_description} />
 
-      {isMyPhotosPage ? (
-        <button
-          aria-label="delete"
-          onClick={() => handleDeleteImage(image.id)}
-          className={style.card__right}
-        >
-          <HeartFill className={style.card__icon} />
-        </button>
-      ) : (
-        <button
-          aria-label="add"
-          onClick={() => handleAddImage(image.id)}
-          className={style.card__right}
-        >
-          <HeartIcon className={style.card__icon} />
-        </button>
-      )}
+        <AddDeleteButton className={style.card__right} image={image} isMyPhotosPage={isMyPhotosPage} />
+        <a type="buttpn" aria-label="download" className={style.card__bottom} href={image.image} download>
+          <ArrowIcon className={style.card__icon} />
+        </a>
 
-      <button
-        aria-label="add"
-        className={style.card__bottom}
-        onClick={() => handleAddImage(image.id)}
-      >
-        <ArrowIcon className={style.card__icon} />
-      </button>
-
-      {isMyPhotosPage && (
-        <button aria-label="edit" className={style.card__left} onClick={() => handleEdit(image.id)}>
-          <EditIcon className={style.card__icon} />
-        </button>
-      )}
+        {isMyPhotosPage && (
+          <button aria-label="edit" className={style.card__left} onClick={() => handleEdit(image.id)}>
+            <EditIcon className={style.card__icon} />
+          </button>
+        )}
+      </div>
+      <ImafeCardDescription
+        isMyPhotosPage={isMyPhotosPage}
+        description={image.description}
+        width={image.width}
+        height={image.height}
+        likes={image.likes}
+        created_at={image.created_at}
+      />
     </article>
   );
 };

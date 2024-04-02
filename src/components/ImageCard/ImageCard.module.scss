@@ -1,14 +1,16 @@
 .card {
-  position: relative;
   display: inline-block;
-  // padding: 0.3em;
-  // background-color: red;
   margin-bottom: 10px;
   border-radius: 0.3em;
   overflow: hidden;
 
+  &__top {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
   &__img {
-    border-radius: 0.3em;
     transition: all 0.3s ease;
   }
 
@@ -51,6 +53,29 @@
   &__icon {
     width: 1.5em;
     color: var(--zinc-900);
+  }
+
+  &__info {
+    padding: 0.3em 0.5em;
+    background-color: var(--white-color);
+    color: var(--zinc-900);
+    font-weight: 600;
+    font-size: 0.9rem;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5em;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  &__span {
+    font-weight: 600;
+  }
+  &__data {
+    font-weight: 400;
   }
   &:hover {
     .card__img {
