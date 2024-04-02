@@ -5,5 +5,5 @@
   "tsxSingleQuote": true,
   "trainlingComma": "none",
   "arrowParents": "avoid",
-  "printWidth": 100
+  "printWidth": 110
 }
