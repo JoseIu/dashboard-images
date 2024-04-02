@@ -1,0 +1,21 @@
+.info {
+  padding: 0.3em 0.5em;
+  background-color: var(--white-color);
+  color: var(--zinc-900);
+  font-weight: 600;
+  font-size: 0.9rem;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5em;
+  &__row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  &__span {
+    font-weight: 600;
+  }
+  &__data {
+    font-weight: 400;
+  }
+}
