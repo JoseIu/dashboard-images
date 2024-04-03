@@ -1,4 +1,4 @@
-import Navigation from '../../routes/Navigation';
+import Navigation from '../routes/Navigation';
 import style from './Header.module.scss';
 
 const Header = () => {
