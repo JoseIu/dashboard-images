@@ -1,8 +1,8 @@
 import { FormEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RooState } from '../app/store';
-import ImagesList from '../components/ImagesList/ImagesList';
-import InputSearch from '../components/InputSearch/InputSearch';
+import { RooState } from '../../app/store';
+import ImagesList from '../../components/ImagesList/ImagesList';
+import InputSearch from '../../components/InputSearch/InputSearch';
 import style from './SearchPage.module.scss';
 
 const SearchPage = () => {

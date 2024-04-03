@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RooState } from '../app/store';
-import EditForm from '../components/EditForm/EditForm';
-import ImagesSavedList from '../components/ImagesSavedList/ImagesSavedList';
-import InputSearch from '../components/InputSearch/InputSearch';
-import { addImageFromStorage } from '../features/imagesSlice/myPhotosSlice';
+import { RooState } from '../../app/store';
+import EditForm from '../../components/EditForm/EditForm';
+import ImagesSavedList from '../../components/ImagesSavedList/ImagesSavedList';
+import InputSearch from '../../components/InputSearch/InputSearch';
+import { addImageFromStorage } from '../../features/imagesSlice/myPhotosSlice';
 import style from './MyPhotosPage.module.scss';
 
 const MyPhotosPage = () => {

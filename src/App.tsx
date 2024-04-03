@@ -2,8 +2,8 @@ import '@fontsource-variable/onest';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './App.scss';
 import Header from './components/Header/Header';
-import MyPhotosPage from './pages/MyPhotosPage';
-import SearchPage from './pages/SearchPage';
+import MyPhotosPage from './pages/myPhotosPage/MyPhotosPage';
+import SearchPage from './pages/searchPage/SearchPage';
 
 const App = () => {
   return (

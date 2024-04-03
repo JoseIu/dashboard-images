@@ -1,5 +1,7 @@
 import { MyPhoTos } from '../../interfaces/myPhotos.interface';
+import EmptyPage from '../EmptyPage/EmptyPage';
 import ImageCard from '../ImageCard/ImageCard';
+
 import style from './ImagesSavedList.module.scss';
 
 interface ImagesSavedListProps {
@@ -8,6 +10,7 @@ interface ImagesSavedListProps {
 }
 
 const ImagesSavedList = ({ images, isMyPhotosPage = false }: ImagesSavedListProps) => {
+  if (!images.length) return <EmptyPage />;
   return (
     <div className={`${style.images} wrapper`}>
       {images.map((image) => (
