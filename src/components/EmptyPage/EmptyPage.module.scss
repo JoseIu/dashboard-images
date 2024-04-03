@@ -1,0 +1,17 @@
+.empty {
+  min-height: 60dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 1em;
+
+  &__img {
+    max-width: 15em;
+  }
+  &__title {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+}
