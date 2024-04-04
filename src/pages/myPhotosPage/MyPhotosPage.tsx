@@ -39,21 +39,20 @@ const MyPhotosPage = () => {
   return (
     <section className={`${style.saved} wrapper`}>
       <h2 className={style.saved__title}>MyPhotosPage</h2>
-      {isEditing ? (
-        <EditForm id={selectedImage} setIsEditing={setIsEditing} />
-      ) : (
-        <MyPhotosFilers
-          search={filters.searchByDescription}
-          setSearchByDescription={setSearchByDescription}
-          sort={filters.sort}
-          setSort={setSort}
-          setSearchByTag={setSearchByTag}
-        />
-      )}
+
+      <MyPhotosFilers
+        search={filters.searchByDescription}
+        setSearchByDescription={setSearchByDescription}
+        sort={filters.sort}
+        setSort={setSort}
+        setSearchByTag={setSearchByTag}
+      />
+      <EditForm isEditing={isEditing} id={selectedImage} setIsEditing={setIsEditing} />
+
       <ImagesSavedList images={photosFiltered} isMyPhotosPage={true} />
       <ToastContainer
         position="top-right"
-        autoClose={3000}
+        autoClose={1500}
         hideProgressBar={false}
         closeOnClick
         rtl={false}
