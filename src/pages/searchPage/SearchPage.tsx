@@ -34,7 +34,7 @@ const SearchPage = () => {
       {loading === 'pending' ? <Loader /> : <ImagesList images={images} />}
       <ToastContainer
         position="top-right"
-        autoClose={3000}
+        autoClose={1500}
         hideProgressBar={false}
         closeOnClick
         rtl={false}
