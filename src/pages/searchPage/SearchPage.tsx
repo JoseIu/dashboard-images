@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 import { AppDispatch, RooState } from '../../app/store';
 import ImagesList from '../../components/ImagesList/ImagesList';
 import InputSearch from '../../components/InputSearch/InputSearch';
@@ -22,14 +23,26 @@ const SearchPage = () => {
   return (
     <section className={`${style.search} wrapper`}>
       <h2 className={style.search__title}>Search Image</h2>
-      <form action="GET" onSubmit={handleSubmit}>
+      <form className={style.search__form} action="GET" onSubmit={handleSubmit}>
         <InputSearch
+          className={style.search__input}
           placeholder="Search an image..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
       </form>
       {loading === 'pending' ? <Loader /> : <ImagesList images={images} />}
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </section>
   );
 };
