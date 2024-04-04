@@ -4,15 +4,12 @@ import { RooState } from '../../app/store';
 import EditForm from '../../components/EditForm/EditForm';
 import ImagesSavedList from '../../components/ImagesSavedList/ImagesSavedList';
 import MyPhotosFilers from '../../components/MyPhotosFilters/MyPhotosFilters';
-import { addImageFromStorage } from '../../features/imagesSlice/myPhotosSlice';
+import { addImageFromStorage } from '../../features/myPhotosSlice/myPhotosSlice';
 import { MyPhoTos } from '../../interfaces/myPhotos.interface';
 import style from './MyPhotosPage.module.scss';
 
 const MyPhotosPage = () => {
   const { myPhotos } = useSelector((state: RooState) => state.myPhoto);
-
-  console.log({ myPhotos });
-  const [photos, setPhotos] = useState(myPhotos);
 
   const [isEditing, setIsEditing] = useState(false);
   const dispatch = useDispatch();
@@ -21,7 +18,7 @@ const MyPhotosPage = () => {
 
   const { filters, setSearchByDescription, setSort, setSearchByTag } = useFilters();
 
-  let photosFiltered = searchByDescription(photos, filters.searchByDescription);
+  let photosFiltered = searchByDescription(myPhotos, filters.searchByDescription);
 
   photosFiltered = sortyBy(photosFiltered, filters.sort);
 
@@ -30,14 +27,12 @@ const MyPhotosPage = () => {
 
     if (!imagesFromStorage.length) return;
     dispatch(addImageFromStorage(imagesFromStorage));
-    setPhotos(imagesFromStorage);
   }, [dispatch]);
 
   useEffect(() => {
     if (!selectedImage || selectedImage === null) return;
 
     setIsEditing(true);
-    setPhotos(myPhotos);
   }, [selectedImage, myPhotos]);
 
   return (
