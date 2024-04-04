@@ -1,5 +1,6 @@
 import '@fontsource-variable/onest';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
 import Header from './components/Header/Header';
 import MyPhotosPage from './pages/myPhotosPage/MyPhotosPage';
