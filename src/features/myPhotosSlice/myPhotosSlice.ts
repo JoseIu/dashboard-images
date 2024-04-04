@@ -16,7 +16,6 @@ const myPhotosSlice = createSlice({
   initialState,
   reducers: {
     addImage: (state, action) => {
-      console.log(action.payload);
       state.myPhotos.push(action.payload);
     },
     addImageFromStorage: (state, action) => {
