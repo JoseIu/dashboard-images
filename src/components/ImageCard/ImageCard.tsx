@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { selectImageById } from '../../features/imagesSlice/myPhotosSlice';
+import { selectImageById } from '../../features/myPhotosSlice/myPhotosSlice';
 import { MyPhoTos } from '../../interfaces/myPhotos.interface';
 import AddDeleteButton from '../AddDeleteButton/AddDeleteButton';
 import ImafeCardDescription from '../ImageCardDescription/ImafeCardDescription';

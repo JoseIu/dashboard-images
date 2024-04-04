@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addImage, deleteImage } from '../../features/imagesSlice/myPhotosSlice';
+import { addImage, deleteImage } from '../../features/myPhotosSlice/myPhotosSlice';
 import removeFromStorage from '../../helpers/removeFromStorage';
 import HeartFill from '../icons/HeartFill';
 import HeartIcon from '../icons/HeartIcon';

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RooState } from '../../app/store';
-import { editImage, selectImageById } from '../../features/imagesSlice/myPhotosSlice';
+import { editImage, selectImageById } from '../../features/myPhotosSlice/myPhotosSlice';
 import editFromStorage from '../../helpers/editFromStorage';
 import style from './EditForm.module.scss';
 
