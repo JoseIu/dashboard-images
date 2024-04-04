@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RooState } from '../../app/store';
 import ImagesList from '../../components/ImagesList/ImagesList';
 import InputSearch from '../../components/InputSearch/InputSearch';
+import Loader from '../../components/Loader/Loader';
 import { getImages } from '../../features/imagesSlice/imageThunk';
 import style from './SearchPage.module.scss';
 
@@ -10,7 +11,7 @@ const SearchPage = () => {
   const [search, setSearch] = useState('');
   const dispatch = useDispatch<AppDispatch>();
 
-  const { images } = useSelector((state: RooState) => state.images);
+  const { images, loading } = useSelector((state: RooState) => state.images);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,8 +29,7 @@ const SearchPage = () => {
           onChange={(e) => setSearch(e.target.value)}
         />
       </form>
-
-      <ImagesList images={images} />
+      {loading === 'pending' ? <Loader /> : <ImagesList images={images} />}
     </section>
   );
 };
