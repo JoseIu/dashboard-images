@@ -1,11 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { results } from '../../db/data.json';
 import { Photos } from '../../interfaces/Result.interface';
+import { getImages } from './imageThunk';
 
-const initialState = {
-  images: results as Photos[],
-  pa: 0,
-  isLoading: false,
+interface ImagesState {
+  images: Photos[];
+  page: number;
+  loading: 'idle' | 'pending' | 'succeeded' | 'failed';
+}
+
+const initialState: ImagesState = {
+  images: [],
+  page: 0,
+  loading: 'idle',
 };
 
 export const imagesSlice = createSlice({
@@ -18,6 +24,19 @@ export const imagesSlice = createSlice({
       return action.payload;
     },
   },
+
+  extraReducers: (builder) => {
+    builder.addCase(getImages.pending, (state) => {
+      state.loading = 'pending';
+    });
+
+    builder.addCase(getImages.fulfilled, (state, action) => {
+      state.loading = 'succeeded';
+      state.images = action.payload.results;
+    });
+    builder.addCase(getImages.rejected, (state) => {
+      state.loading = 'failed';
+    });
+  },
 });
 export const { addResult } = imagesSlice.actions;
-// export default imagesSlice.reducer;
