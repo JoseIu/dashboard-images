@@ -26,7 +26,7 @@ const AddDeleteButton = ({ image, isMyPhotosPage, className }: AddDeleteButtonPr
   const handleDeleteImage = (id: string) => {
     dispatch(deleteImage(id));
     removeFromStorage(id);
-    toast.success('Successfully deleted');
+    toast.success('Deleted Successfully!');
   };
 
   // ADD IMAGE TO MY PHOTOS
@@ -36,7 +36,7 @@ const AddDeleteButton = ({ image, isMyPhotosPage, className }: AddDeleteButtonPr
 
     //CHECK IF IMAGE IS ALREADY IN MY PHOTOS AND STORAGE
     const existImage = existImageInPhotos(findImage.id, imagesSaved);
-    if (existImage) return;
+    if (existImage) return toast.error('Image already added!');
     dispatch(addImage(image));
     saveToStorage(image);
     toast.success('Image added to My Photos');
