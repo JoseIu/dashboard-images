@@ -4,6 +4,7 @@ import removeFromStorage from '../../helpers/removeFromStorage';
 import HeartFill from '../icons/HeartFill';
 import HeartIcon from '../icons/HeartIcon';
 
+import { toast } from 'react-toastify';
 import { RooState } from '../../app/store';
 import existImageInPhotos from '../../helpers/existImageInPhotos';
 import saveToStorage from '../../helpers/saveToStorage';
@@ -25,6 +26,7 @@ const AddDeleteButton = ({ image, isMyPhotosPage, className }: AddDeleteButtonPr
   const handleDeleteImage = (id: string) => {
     dispatch(deleteImage(id));
     removeFromStorage(id);
+    toast.success('Successfully deleted');
   };
 
   // ADD IMAGE TO MY PHOTOS
@@ -38,6 +40,7 @@ const AddDeleteButton = ({ image, isMyPhotosPage, className }: AddDeleteButtonPr
     if (existImage) return;
     dispatch(addImage(image));
     saveToStorage(image);
+    toast.success('Image added to My Photos');
   };
 
   return (
