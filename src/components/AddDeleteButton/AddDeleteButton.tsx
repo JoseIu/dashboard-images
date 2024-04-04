@@ -34,9 +34,8 @@ const AddDeleteButton = ({ image, isMyPhotosPage, className }: AddDeleteButtonPr
     const findImage = images.find((image) => image.id === id);
     if (findImage === undefined) return;
 
-    //CHECK IF IMAGE IS ALREADY IN MY PHOTOS
+    //CHECK IF IMAGE IS ALREADY IN MY PHOTOS AND STORAGE
     const existImage = existImageInPhotos(findImage.id, imagesSaved);
-
     if (existImage) return;
     dispatch(addImage(image));
     saveToStorage(image);
