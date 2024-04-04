@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 import { RooState } from '../../app/store';
 import EditForm from '../../components/EditForm/EditForm';
 import ImagesSavedList from '../../components/ImagesSavedList/ImagesSavedList';
@@ -50,6 +51,17 @@ const MyPhotosPage = () => {
         />
       )}
       <ImagesSavedList images={photosFiltered} isMyPhotosPage={true} />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </section>
   );
 };
