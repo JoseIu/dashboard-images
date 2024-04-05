@@ -5,7 +5,7 @@ import { AppDispatch, RooState } from '../../app/store';
 import ImagesList from '../../components/ImagesList/ImagesList';
 import InputSearch from '../../components/InputSearch/InputSearch';
 import Loader from '../../components/Loader/Loader';
-import { getImages } from '../../features/imagesSlice/imageThunk';
+import { getImages, getImagesRandom } from '../../features/imagesSlice/imageThunk';
 import style from './SearchPage.module.scss';
 
 const SearchPage = () => {
@@ -16,7 +16,7 @@ const SearchPage = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    if (search === '') return dispatch(getImagesRandom());
     dispatch(getImages(search));
   };
 
