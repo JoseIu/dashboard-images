@@ -1,4 +1,6 @@
 .filters {
+  max-width: 50em;
+  margin-inline: auto;
   padding: 2em 1em;
   display: grid;
   grid-template-areas:
@@ -14,12 +16,39 @@
     grid-area: a;
   }
 
-  &__select {
+  &__container {
+    position: relative;
+
     grid-area: b;
-    padding: 1em;
     border-radius: 0.3em;
     outline: none;
     background-color: var(--secondary-color);
     color: var(--zinc-100);
+    font-weight: 600;
+  }
+  &__select {
+    width: 100%;
+    padding: 1em;
+    border: none;
+    background-color: transparent;
+    color: var(--zinc-100);
+    outline: none;
+    cursor: pointer;
+  }
+  &__arow {
+    position: absolute;
+    width: 1.3em;
+    right: 1em;
+    top: 1.5em;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: all 0.2s ease;
+  }
+  &__option {
+    color: var(--zinc-900);
+  }
+
+  &__select:focus + &__arow {
+    transform: translateY(-50%) rotate(180deg);
   }
 }
