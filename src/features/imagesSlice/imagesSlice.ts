@@ -18,13 +18,7 @@ const initialState: ImagesState = {
 export const imagesSlice = createSlice({
   name: 'images',
   initialState,
-  reducers: {
-    addResult: (state, action) => {
-      console.log(action.payload);
-      //   state.push(action.payload);
-      return action.payload;
-    },
-  },
+  reducers: {},
 
   extraReducers: (builder) => {
     builder.addCase(getImages.pending, (state) => {
@@ -52,4 +46,3 @@ export const imagesSlice = createSlice({
     });
   },
 });
-export const { addResult } = imagesSlice.actions;
