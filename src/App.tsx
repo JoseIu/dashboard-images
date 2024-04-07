@@ -11,8 +11,8 @@ const App = () => {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="search" element={<SearchPage />} />
-        <Route path="my-photos" element={<MyPhotosPage />} />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/my-photos" element={<MyPhotosPage />} />
         <Route path="/*" element={<Navigate to="/search" replace />} />
       </Routes>
     </BrowserRouter>
