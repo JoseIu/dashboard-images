@@ -1,10 +1,11 @@
 import { Photos } from '../../interfaces/Result.interface';
 import { MyPhoTos } from '../../interfaces/myPhotos.interface';
+import { RandomResult } from '../../interfaces/randomResult';
 import ImageCard from '../ImageCard/ImageCard';
 import style from './ImageList.module.scss';
 
 interface ImagesListProps {
-  images: Photos[];
+  images: Photos[] | RandomResult[];
 }
 
 const ImagesList = ({ images }: ImagesListProps) => {

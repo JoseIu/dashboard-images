@@ -29,7 +29,7 @@ export interface Photos {
   topic_submissions: ResultTopicSubmissions;
   asset_type: AssetType;
   user: User;
-  tags: Tag[];
+  tags?: Tag[];
 }
 
 export interface AlternativeSlugs {
