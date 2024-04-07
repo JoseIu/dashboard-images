@@ -45,7 +45,6 @@ const MyPhotosPage = () => {
         setSearchByDescription={setSearchByDescription}
         sort={filters.sort}
         setSort={setSort}
-        setSearchByTag={setSearchByTag}
       />
       <EditForm isEditing={isEditing} id={selectedImage} setIsEditing={setIsEditing} />
 
