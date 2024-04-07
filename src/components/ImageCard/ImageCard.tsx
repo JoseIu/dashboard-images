@@ -1,3 +1,4 @@
+import { saveAs } from 'file-saver';
 import { useDispatch } from 'react-redux';
 import { selectImageById } from '../../features/myPhotosSlice/myPhotosSlice';
 import { MyPhoTos } from '../../interfaces/myPhotos.interface';
@@ -25,9 +26,9 @@ const ImageCard = ({ image, isMyPhotosPage = false }: ImageCardProps) => {
         <img className={style.card__img} src={image.image} alt={image.alt_description} />
 
         <AddDeleteButton className={style.card__right} image={image} isMyPhotosPage={isMyPhotosPage} />
-        <a type="buttpn" aria-label="download" className={style.card__bottom} href={image.image} download>
+        <button aria-label="download" className={style.card__bottom} onClick={() => saveAs(image.image)}>
           <ArrowIcon className={style.card__icon} />
-        </a>
+        </button>
 
         {isMyPhotosPage && (
           <button aria-label="edit" className={style.card__left} onClick={() => handleEdit(image.id)}>
