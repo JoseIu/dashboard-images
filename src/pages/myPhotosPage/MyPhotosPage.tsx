@@ -6,7 +6,8 @@ import EditForm from '../../components/EditForm/EditForm';
 import ImagesSavedList from '../../components/ImagesSavedList/ImagesSavedList';
 import MyPhotosFilers from '../../components/MyPhotosFilters/MyPhotosFilters';
 import { addImageFromStorage } from '../../features/myPhotosSlice/myPhotosSlice';
-import { MyPhoTos } from '../../interfaces/myPhotos.interface';
+import { searchByDescription, sortyBy } from '../../helpers/imagesFilters';
+import { useFilters } from '../../hooks/useFilters';
 import style from './MyPhotosPage.module.scss';
 
 const MyPhotosPage = () => {
@@ -17,7 +18,7 @@ const MyPhotosPage = () => {
 
   const { selectedImage } = useSelector((state: RooState) => state.myPhoto);
 
-  const { filters, setSearchByDescription, setSort, setSearchByTag } = useFilters();
+  const { filters, setSearchByDescription, setSort } = useFilters();
 
   let photosFiltered = searchByDescription(myPhotos, filters.searchByDescription);
 
@@ -62,57 +63,6 @@ const MyPhotosPage = () => {
       />
     </section>
   );
-};
-
-const useFilters = () => {
-  const [filters, setFilters] = useState({
-    searchByDescription: '',
-    sort: 0,
-    searchByTag: '',
-  });
-
-  const setSearchByDescription = (search: string) => setFilters({ ...filters, searchByDescription: search });
-  const setSort = (sort: number) => setFilters({ ...filters, sort });
-  const setSearchByTag = (search: string) => setFilters({ ...filters, searchByTag: search });
-
-  return {
-    filters,
-    setSearchByDescription,
-    setSort,
-    setSearchByTag,
-  };
-};
-
-const searchByDescription = (images: MyPhoTos[], search: string) => {
-  if (!search) return images;
-  const noramlizedSearch = search.toLowerCase();
-  const imagesFiltered = images.filter((image) =>
-    image.description?.toLowerCase().includes(noramlizedSearch),
-  );
-  console.log(imagesFiltered);
-
-  return imagesFiltered;
-};
-
-const sortyBy = (images: MyPhoTos[], sort: number) => {
-  const imagesToSort = [...images];
-
-  switch (sort) {
-    case 1:
-      return imagesToSort.sort((a, b) => {
-        if (a.created_at! > b.created_at!) return -1;
-        if (a.created_at! < b.created_at!) return 1;
-        return 0;
-      });
-    case 2:
-      return imagesToSort.sort((a, b) => b.width! - a.width!);
-    case 3:
-      return imagesToSort.sort((a, b) => b.height! - a.height!);
-    case 4:
-      return imagesToSort.sort((a, b) => b.likes! - a.likes!);
-    default:
-      return images;
-  }
 };
 
 export default MyPhotosPage;
