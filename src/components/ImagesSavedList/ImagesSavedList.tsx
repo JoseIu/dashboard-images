@@ -10,7 +10,7 @@ interface ImagesSavedListProps {
 }
 
 const ImagesSavedList = ({ images, isMyPhotosPage = false }: ImagesSavedListProps) => {
-  if (!images.length) return <EmptyPage />;
+  if (!images.length) return <EmptyPage isEmpty={false} />;
   return (
     <div className={`${style.images} wrapper`}>
       {images.map((image) => (
