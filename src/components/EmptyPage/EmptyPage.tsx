@@ -1,10 +1,16 @@
 import style from './EmptyPage.module.scss';
-const EmptyPage = () => {
+
+type EmptyPageProps = {
+  isEmpty: boolean;
+};
+const EmptyPage = ({ isEmpty }: EmptyPageProps) => {
+  const srcIamge = isEmpty ? 'empyPage.svg' : 'noResultsPage.svg';
+  const textSpan = isEmpty ? 'this page is empty' : 'No results found';
   return (
     <div className={style.empty}>
-      <img className={style.empty__img} src="empyPage.svg" alt="" />
+      <img className={style.empty__img} src={srcIamge} alt="" />
 
-      <span className={style.empty__title}> this page is empty </span>
+      <span className={style.empty__title}> {textSpan} </span>
     </div>
   );
 };
