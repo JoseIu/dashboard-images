@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import { RooState } from '../../app/store';
 import EditForm from '../../components/EditForm/EditForm';
+import EmptyPage from '../../components/EmptyPage/EmptyPage';
 import ImagesSavedList from '../../components/ImagesSavedList/ImagesSavedList';
 import MyPhotosFilers from '../../components/MyPhotosFilters/MyPhotosFilters';
 import { addImageFromStorage } from '../../features/myPhotosSlice/myPhotosSlice';
@@ -49,7 +50,11 @@ const MyPhotosPage = () => {
       />
       <EditForm isEditing={isEditing} id={selectedImage} setIsEditing={setIsEditing} />
 
-      <ImagesSavedList images={photosFiltered} isMyPhotosPage={true} />
+      {!myPhotos.length ? (
+        <EmptyPage isEmpty={true} />
+      ) : (
+        <ImagesSavedList images={photosFiltered} isMyPhotosPage={true} />
+      )}
       <ToastContainer
         position="top-right"
         autoClose={1500}
