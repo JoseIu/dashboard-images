@@ -26,7 +26,7 @@ const SearchPage = () => {
       <form className={style.search__form} action="GET" onSubmit={handleSubmit}>
         <InputSearch
           className={style.search__input}
-          placeholder="Search an image......."
+          placeholder="Search an image..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
