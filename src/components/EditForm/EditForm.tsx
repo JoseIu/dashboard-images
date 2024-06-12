@@ -42,20 +42,23 @@ const EditForm = ({ id, isEditing, setIsEditing }: EditFormProps) => {
   }, [id, myPhotos]);
   return (
     <div className={`${isEditing ? style.editing : style.container} wrapper`}>
-      <form className={style.edit} onSubmit={handleSyubmit}>
-        <input
-          className={style.edit__input}
-          type="text"
-          placeholder="edit"
-          value={edit}
-          onChange={(e) => setEdit(e.target.value)}
-        />
-        <input className={style.edit__submit} type="submit" name="edit" id="edit" value="edit" />
+      <div className={style.editing__container}>
+        <h2 className={style.editing__title}>Edit description:</h2>
+        <form className={style.edit} onSubmit={handleSyubmit}>
+          <input
+            className={style.edit__input}
+            type="text"
+            placeholder="edit"
+            value={edit}
+            onChange={(e) => setEdit(e.target.value)}
+          />
+          <input className={style.edit__submit} type="submit" name="edit" id="edit" value="edit" />
 
-        <button className={style.edit__close} type="button" onClick={handleCloseEdit}>
-          X
-        </button>
-      </form>
+          <button className={style.edit__close} type="button" onClick={handleCloseEdit}>
+            X
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

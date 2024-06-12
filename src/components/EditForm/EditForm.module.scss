@@ -1,5 +1,6 @@
 .container,
 .editing {
+  padding: 1rem;
   position: fixed;
   top: 0;
   width: 100%;
@@ -14,16 +15,29 @@
 }
 .container {
   opacity: 0;
+
   pointer-events: none;
 }
 .editing {
-  opacity: 1;
   pointer-events: all;
+
+  &__container {
+    width: 100%;
+    max-width: 40rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+  &__title {
+    max-width: 20em;
+    font-weight: 600;
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  }
 }
 
 .edit {
   position: relative;
-  min-width: 100%;
+  width: 100%;
   padding: 2em;
 
   border-radius: 0.3em;
@@ -46,6 +60,7 @@
     padding: 0.3em 1em;
     border-radius: 0.3em;
     background-color: var(--secondary-color);
+    cursor: pointer;
   }
   &__close {
     position: absolute;
