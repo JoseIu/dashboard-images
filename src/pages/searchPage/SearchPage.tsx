@@ -17,7 +17,7 @@ const SearchPage = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (search === '') return dispatch(getImagesRandom());
-    dispatch(getImages(search));
+    await dispatch(getImages(search));
   };
 
   return (
