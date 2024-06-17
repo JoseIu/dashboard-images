@@ -24,7 +24,7 @@ export interface Photos {
   links: ResultLinks;
   likes: number;
   liked_by_user: boolean;
-  current_user_collections: [];
+  current_user_collections: unknown[];
   sponsorship: null;
   topic_submissions: ResultTopicSubmissions;
   asset_type: AssetType;
