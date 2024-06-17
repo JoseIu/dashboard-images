@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import initialImages from '../../db/data.json';
 import { Photos } from '../../interfaces/Result.interface';
 import { RandomResult } from '../../interfaces/randomResult';
 import { getImages, getImagesRandom } from './imageThunk';
@@ -10,7 +11,7 @@ interface ImagesState {
 }
 
 const initialState: ImagesState = {
-  images: [],
+  images: initialImages as Photos[],
   page: 0,
   loading: 'idle',
 };
