@@ -18,8 +18,7 @@ const params = {
 
 export const getImagesRandom = createAsyncThunk('images/getRandom', async () => {
   const response = await fetch(`${BASE_URL_RANDOM}/random?count=${params.count}&client_id=${API_KEY}`);
-  console.log(response);
-  const data: RandomResult[] = await response.json();
 
+  const data: RandomResult[] = await response.json();
   return data;
 });
